@@ -75,7 +75,7 @@ These problem-solving patterns provide valuable strategies for approaching a wid
 
 To start learning and practicing, follow these steps:
 
-1. Clone this repository using `git clone https://github.com/your-username/data-structures-and-algorithms-c.git`
+1. Clone this repository using `git clone https://github.com/sir-george2500/DSA_C.git`
 2. Browse the `data-structures` and `algorithms` directories for detailed explanations and C implementations.
 3. Explore code examples, try modifying them, and run them to see how they work.
 4. Complete exercises provided in each section to reinforce your understanding.
