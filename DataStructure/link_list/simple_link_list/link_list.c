@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.>
+#include <stdlib.h>
 
 typedef struct node 
 {
@@ -35,7 +35,9 @@ int main(void)
 
 	second->val = 4;
 
-	second->val = NULL;
+	second->next= NULL;
+
+	printList(head);
 
 	free(head);
 	free(second);
