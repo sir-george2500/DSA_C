@@ -23,24 +23,38 @@ void printList(Node *head)
 	printf("%s\n","NULL");
 }
 
+void addElement(Node **head, int data)
+{
+	Node *new_node = malloc(sizeof(Node));
+
+	new_node->val = data;
+
+	new_node->next = NULL;
+	
+	if(*head == NULL)
+	{
+		*head = new_node;
+		return;
+	}
+
+	Node *current = *head;
+
+	while(current->next != NULL)
+	{
+		current = current->next;
+	}
+	current->next = new_node;
+
+}
+
 int main(void)
 {
-	Node *head = malloc(sizeof(head));
+	Node *head = NULL;
 
-	head->val =2;
-
-	Node *second = malloc(sizeof(second));
-
-	head->next = second;
-
-	second->val = 4;
-
-	second->next= NULL;
-
+	addElement(&head , 2);
+	addElement(&head, 4);
 	printList(head);
 
-	free(head);
-	free(second);
 
 	return (0);
 }
