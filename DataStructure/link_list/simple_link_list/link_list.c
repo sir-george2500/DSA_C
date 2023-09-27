@@ -108,8 +108,8 @@ void insertAt(Node **head, int position, int data)
 void reverseList(Node **head)
 {
 	Node *prev = NULL;
-	Node *current = *head;
 	Node *next = NULL;
+	Node *current = *head;
 	
 	while(current != NULL)
 	{
@@ -119,8 +119,10 @@ void reverseList(Node **head)
 		current = next;
 	}
 	
-	*head = prev
+	*head = prev;
 }
+
+
 
 
 int main(void)
