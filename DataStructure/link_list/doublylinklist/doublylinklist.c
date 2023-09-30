@@ -47,6 +47,34 @@ void addElement(Node **head, int data)
 
 	current->next = new_node;
 	new_node = current;
+}
+
+void removeAt(Node **head, int position){
+
+if(*head == NULL){
+  return;
+}
+
+if(position == 0){
+    *head = (*head)->next;
+    return;
+}
+
+
+Node *current = *head;
+
+for(int i = 0; current != NULL && position -1; i++){
+
+    current = current->next;
+}
+
+Node *nextNode = current->next->next;
+
+free(current->next);
+
+nextNode->prev = current;
+current->next = nextNode;
+
 }	
 
 int main(void)
@@ -55,6 +83,10 @@ int main(void)
 
 	addElement(&head, 20);
 	addElement(&head, 40);
+
+	printList(head);
+	
+	removeAt(&head, 0); // Remove the node at position 0 (first node)
 
 	printList(head);
 	return (0);
