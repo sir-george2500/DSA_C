@@ -86,19 +86,48 @@ void removeAt(Node **head, int position)
 
 
 
+
+void insertAt(Node **head, int data , int position)
+{
+   Node *new_node = malloc(sizeof(Node));
+   
+   new_node->val = data;
+   new_node->next = NULL;
+   new_node->prev = NULL;
+   
+   Node *curr = *head;
+   for(int i = 0; curr != NULL && i<position -1; i++){
+        curr = curr->next;
+   } 
+   
+   if(curr == NULL && curr->next == NULL)
+   {
+     return;
+   } 
+   
+   if(curr->next != NULL)
+   {
+     new_node->prev = curr;
+   }
+   
+   new_node->next = curr->next;
+   curr->next = new_node;
+}
+
+
 int main(void)
 {
     Node *head = NULL;
 
     addElement(&head, 20);
     addElement(&head, 40);
-    addElement(&head, 30);
+    addElement(&head, 60);
 
     printList(head);
 
-    //insertAt(&head, 30, 1); // Insert 30 at position 1
+    insertAt(&head, 30, 1); // Insert 30 at position 1
 
-    removeAt(&head, 2); // Remove the node at position 0 (first node)
+  //  removeAt(&head, 2); // Remove the node at position 0 (first node)
 
     printList(head);
 
