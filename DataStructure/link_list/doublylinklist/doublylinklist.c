@@ -2,113 +2,89 @@
 #include <stdlib.h>
 
 
-typedef struct node 
-{
+typedef struct node {
 	int val;
 	struct node *next;
 	struct node *prev;
 }Node;
 
-void printList(Node *head){
-
-	if(head == NULL)
-	{
-	 return;
+void printList(Node *head)
+{
+	if(head == NULL){
+		return;
 	}
-
-	while(head!=NULL){
-	  printf("%d <=> ", head->val);
+	
+	while(head != NULL){
+	  printf("%d <=> ",head->val);
 	  head = head->next;
 	}
-	printf("%s\n", "NULL");
+	
+	printf("%s\n","NULL");
 }
 
-void addElement(Node **head, int data)
+void addElement(Node **head, int data){
+
+//new Node
+Node *new_node = malloc(sizeof(Node));
+
+//initialize the new_node
+new_node->val = data;
+new_node->prev = NULL;
+new_node->next = NULL;
+
+
+//check if the head node is empty 
+if(*head == NULL)
 {
-	Node *new_node = malloc(sizeof(Node));
-
-	new_node->val = data;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-
-
-	if(*head == 0)
-	{
-	    *head = new_node;
-	    return; 
-	}
-
-        Node *current = *head;
-
-	while(current->next != NULL)
-	{
-		current = current->next;
-	}
-
-	current->next = new_node;
-	new_node = current;
+   *head = new_node;
+   return;
 }
 
-void removeAt(Node **head, int position){
-
-if(*head == NULL){
-  return;
-}
-
-if(position == 0){
-    *head = (*head)->next;
-    return;
-}
-
-
+//declare a Temporary traversal to traverse the link list 
 Node *current = *head;
 
-for(int i = 0; current != NULL && position -1; i++){
-
-    current = current->next;
+  while(current->next != NULL)
+  {
+  	current = current->next; 
+  }
+  current->next = new_node;
+  new_node->prev = current;
 }
 
-Node *nextNode = current->next->next;
 
-free(current->next);
-
-nextNode->prev = current;
-current->next = nextNode;
-
-}	
-
-void insertAt(Node **head, int data , int position)
+void removeAt(Node **head, int position)
 {
-    Node *new_node = malloc(sizeof(Node));
-    
-    new_node->val = data;
-    new_node->next = NULL;
-    new_node->prev = NULL;
-    
-    
-   if(position== 0)
-   {
-      *head = (*head)->next;
-      return;
-   }
-   
-   Node *current = *head;
-   
-   for(int i = 0; current != NULL && position-1; i++)
-   {
-         current = current->next;
-   }
-   
-   
-   
-        new_node->next = current->next;
-        
-        if (current->next != NULL) {
-            current->next->prev = new_node;
-        }
-        current->next = new_node;
-        new_node->prev = current; 
+  if(*head == NULL){
+     *head = (*head)->next;
+  }
+  
+  Node *curr = *head;
+  
+  for(int i =0; curr != NULL && i <position -1; i++)
+  {
+     curr = curr->next;
+  }
+  
+  Node *nextNode = curr->next->next;
+  
+  //check if the node is out of bound
+  if(curr == NULL || curr->next == NULL)
+  {
+  	return;
+  }
+  
+  free(curr->next);
+  //check if it's a node in the middle
+  
+  if(nextNode != NULL)
+  {
+     nextNode->prev = curr;
+  }
+  
+  curr->next = nextNode;
 }
+
+
 
 int main(void)
 {
@@ -116,14 +92,13 @@ int main(void)
 
     addElement(&head, 20);
     addElement(&head, 40);
+    addElement(&head, 30);
 
     printList(head);
 
-    insertAt(&head, 30, 1); // Insert 30 at position 1
+    //insertAt(&head, 30, 1); // Insert 30 at position 1
 
-    printList(head);
-
-    removeAt(&head, 0); // Remove the node at position 0 (first node)
+    removeAt(&head, 2); // Remove the node at position 0 (first node)
 
     printList(head);
 
