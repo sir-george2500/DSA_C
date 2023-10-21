@@ -6,10 +6,6 @@ A stack is a fundamental data structure that follows the Last-In, First-Out (LIF
 
 - [Features](#features)
 - [Usage](#usage)
-- [Example](#example)
-- [API](#api)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -18,9 +14,3 @@ A stack is a fundamental data structure that follows the Last-In, First-Out (LIF
 - Peek: View the top element without removing it.
 - IsEmpty: Check if the stack is empty.
 - Size: Get the current size of the stack.
-
-## Usage
-
-```c
-# Include instructions or code snippets on how to use the stack data structure in your programming language of choice.
-
